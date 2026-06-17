@@ -88,97 +88,28 @@
       <div class="gallery-grid">
 
         <!-- Row 1 -->
-        <div class="gallery-item">
-          <div class="gallery-thumb"></div>
-          <p class="gallery-item-title">영상 제목</p>
-          <a class="gallery-item-link" href="#">게시물로</a>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-thumb"></div>
-          <p class="gallery-item-title">영상 제목</p>
-          <a class="gallery-item-link" href="#">게시물로</a>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-thumb"></div>
-          <p class="gallery-item-title">영상 제목</p>
-          <a class="gallery-item-link" href="#">게시물로</a>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-thumb"></div>
-          <p class="gallery-item-title">영상 제목</p>
-          <a class="gallery-item-link" href="#">게시물로</a>
-        </div>
+{% for post in site.posts %}
 
-        <!-- Row 2 -->
-        <div class="gallery-item">
-          <div class="gallery-thumb"></div>
-          <p class="gallery-item-title">영상 제목</p>
-          <a class="gallery-item-link" href="#">게시물로</a>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-thumb"></div>
-          <p class="gallery-item-title">영상 제목</p>
-          <a class="gallery-item-link" href="#">게시물로</a>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-thumb"></div>
-          <p class="gallery-item-title">영상 제목</p>
-          <a class="gallery-item-link" href="#">게시물로</a>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-thumb"></div>
-          <p class="gallery-item-title">영상 제목</p>
-          <a class="gallery-item-link" href="#">게시물로</a>
-        </div>
+<div class="gallery-item">
 
-        <!-- Row 3 -->
-        <div class="gallery-item">
-          <div class="gallery-thumb"></div>
-          <p class="gallery-item-title">영상 제목</p>
-          <a class="gallery-item-link" href="#">게시물로</a>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-thumb"></div>
-          <p class="gallery-item-title">영상 제목</p>
-          <a class="gallery-item-link" href="#">게시물로</a>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-thumb"></div>
-          <p class="gallery-item-title">영상 제목</p>
-          <a class="gallery-item-link" href="#">게시물로</a>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-thumb"></div>
-          <p class="gallery-item-title">영상 제목</p>
-          <a class="gallery-item-link" href="#">게시물로</a>
-        </div>
-
-        <!-- Row 4 -->
-        <div class="gallery-item">
-          <div class="gallery-thumb"></div>
-          <p class="gallery-item-title">영상 제목</p>
-          <a class="gallery-item-link" href="#">게시물로</a>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-thumb"></div>
-          <p class="gallery-item-title">영상 제목</p>
-          <a class="gallery-item-link" href="#">게시물로</a>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-thumb"></div>
-          <p class="gallery-item-title">영상 제목</p>
-          <a class="gallery-item-link" href="#">게시물로</a>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-thumb"></div>
-          <p class="gallery-item-title">영상 제목</p>
-          <a class="gallery-item-link" href="#">게시물로</a>
-        </div>
-
-      </div>
+  {% if post.thumb %}
+    <div class="gallery-thumb">
+      <img src="{{ post.thumb }}" alt="{{ post.title }}">
     </div>
-  </div>
+{% endif %}
 
+  <p class="gallery-item-title">
+    {{ post.title }}
+  </p>
+
+  <a class="gallery-item-link"
+     href="{{ post.url | relative_url }}">
+     게시물로
+  </a>
+
+</div>
+
+{% endfor %}
   <!-- 푸터 -->
   <footer>
     <div class="footer-top">
