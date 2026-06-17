@@ -793,3 +793,38 @@
     }
 
     .gallery-item-link:hover { color: var(--red); }
+
+    .post-detail {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    .post-detail-date {
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 12px;
+    }
+
+    .post-detail-title {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 32px;
+    }
+
+    .post-detail-content {
+      font-size: 15px;
+      line-height: 1.9;
+      color: #444;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 32px;
+      font-size: 13px;
+      color: #888;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .back-btn:hover { color: var(--red); }
