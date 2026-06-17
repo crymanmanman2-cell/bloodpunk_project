@@ -71,7 +71,7 @@ title: BLOODPUNK
         {% for post in site.posts %}
       
           <div class="post-card">
-            <p class="post-title">{{ post.date | date: "%m월%d일" }} {{ post.title }}</p>
+            <p class="post-title">{{ post.date | date: "%m월%d일: " }} {{ post.title }}</p>
       
             {% if post.thumb %}
               <div class="post-body-media">
