@@ -72,30 +72,28 @@
 
       <!-- 포스트 목록 -->
       <div class="posts-list">
-  {% for post in site.posts %}
-
-    <div class="post-card">
-      <p class="post-title">{{ post.date | date: "%m월%d일" }} {{ post.title }}</p>
-
-      {% if post.thumb %}
-        <!-- 이미지가 있는 포스트 -->
-        <div class="post-body-media">
-          <div class="post-thumb">
-            <img src="{{ post.thumb }}" alt="{{ post.title }}" />
+        {% for post in site.posts %}
+      
+          <div class="post-card">
+            <p class="post-title">{{ post.date | date: "%m월%d일" }} {{ post.title }}</p>
+      
+            {% if post.thumb %}
+              <div class="post-body-media">
+                <div class="post-thumb">
+                  <img src="{{ post.thumb }}" alt="{{ post.title }}" style="width:100%; height:100%; object-fit:cover;" />
+                </div>
+                <div class="post-content-box">{{ post.excerpt | strip_html }}</div>
+              </div>
+      
+            {% else %}
+              <div class="post-body-text">{{ post.excerpt | strip_html }}</div>
+      
+            {% endif %}
+      
+            <a class="post-more" href="{{ post.url }}">자세히</a>
           </div>
-          <div class="post-content-box">{{ post.excerpt }}</div>
-        </div>
-
-      {% else %}
-        <!-- 이미지가 없는 포스트 -->
-        <div class="post-body-text">{{ post.excerpt }}</div>
-
-      {% endif %}
-
-      <a class="post-more" href="{{ post.url }}">자세히</a>
-    </div>
-
-  {% endfor %}
+      
+        {% endfor %}
 </div>
 
   <!-- 푸터 -->
