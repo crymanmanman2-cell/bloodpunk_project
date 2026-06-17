@@ -2,8 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>개발노트</title>
+  <title>{{ page.title }} | 게임 이름</title>
   <link rel="stylesheet" href="/bloodpunk_project/assets/css/style.css">
 </head>
 <body>
@@ -12,91 +11,28 @@
   <nav>
     <div class="logo-box">Logo</div>
     <ul class="nav-links">
-      <li><a href="메인.html">메인</a></li>
-      <li><a href="개발노트.html" class="active">개발노트</a></li>
-      <li><a href="#">설정집</a></li>
+      <li><a href="index.html">메인</a></li>
+      <li><a href="개발노트.html">개발노트</a></li>
+      <li><a href="#" class="active">설정집</a></li>
       <li><a href="갤러리.html">갤러리</a></li>
       <li><a href="#">코멘트</a></li>
     </ul>
   </nav>
 
-  <!-- 히어로 배너 -->
-  <div class="hero-banner"></div>
+  <div class="post-detail">
+    <!-- 뒤로가기 -->
 
-  <!-- 페이지 본문 -->
-  <div class="page-body">
+    <!-- 날짜 -->
+    <p class="post-detail-date">{{ page.date | date: "%Y년 %m월 %d일 :" }}</p>
 
-    <!-- 필터 탭 바 -->
-    <div class="filter-bar">
-      <div class="filter-tabs">
-        <button class="tab-btn active">주요 업데이트</button>
-        <button class="tab-btn">버그 수정</button>
-        <button class="tab-btn">개발 목표</button>
-      </div>
-      <div class="search-box">
-        <span class="search-icon">🔍</span>
-        <input type="text" placeholder="Search product" />
-      </div>
+    <!-- 제목 -->
+    <h1 class="post-detail-title">{{ page.title }}</h1>
+
+    <!-- .md 본문 내용 자동 삽입 -->
+    <div class="post-detail-content">
+      
     </div>
-
-    <!-- 콘텐츠 레이아웃 -->
-    <div class="content-layout">
-
-      <!-- 사이드바 -->
-      <aside class="sidebar">
-        <h3>Filter</h3>
-        <div class="filter-group">
-          <div class="filter-item">
-            <span>Tea type</span>
-            <span class="arrow">▾</span>
-          </div>
-          <div class="filter-item">
-            <span>Size</span>
-            <span class="arrow">▾</span>
-          </div>
-          <div class="filter-item">
-            <span>Strength</span>
-          </div>
-          <div class="filter-item has-checks">
-            <div class="label-row"><span>Caffeine</span></div>
-            <div class="checkboxes">
-              <label><input type="checkbox" /> Caffeinated</label>
-              <label><input type="checkbox" /> Decaffeinated</label>
-            </div>
-          </div>
-          <div class="filter-item">
-            <span>Source</span>
-          </div>
-        </div>
-      </aside>
-
-      <!-- 포스트 목록 -->
-      <div class="posts-list">
-  {% for post in site.posts %}
-
-    <div class="post-card">
-      <p class="post-title">{{ post.date | date: "%m월%d일" }} {{ post.title }}</p>
-
-      {% if post.thumb %}
-        <!-- 이미지가 있는 포스트 -->
-        <div class="post-body-media">
-          <div class="post-thumb">
-            <img src="{{ post.thumb }}" alt="{{ post.title }}" />
-          </div>
-          <div class="post-content-box">{{ post.excerpt }}</div>
-        </div>
-
-      {% else %}
-        <!-- 이미지가 없는 포스트 -->
-        <div class="post-body-text">{{ post.excerpt }}</div>
-
-      {% endif %}
-
-      <a class="post-more" href="{{ post.url }}">자세히</a>
-    </div>
-
-  {% endfor %}
-</div>
+  </div>
 
   <!-- 푸터 -->
   <footer>
@@ -110,10 +46,6 @@
     <div class="footer-bottom">
       <div class="footer-logo-area">
         <div class="footer-logo-box">Logo</div>
-        <div class="footer-socials">
-          <a href="#" title="Facebook">&#x1F426;</a>
-          <a href="#" title="Instagram">&#x1F4F7;</a>
-        </div>
       </div>
       <div class="footer-links">
         <div class="footer-links-col">
