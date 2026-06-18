@@ -83,7 +83,7 @@ title: 갤러리
                 <img src="{{ image }}" alt="{{ post.title }}" style="width:100%; height:100%; object-fit:cover;" />
               </div>
               <p class="gallery-item-title">{{ post.title }}</p>
-              <a class="gallery-item-link" href="{{ post.url }}">게시물로</a>
+              <a class="gallery-item-link" href="{{ post.url | relative_url }}">게시물로</a>
             </div>
           {% endfor %}
         {% endif %}
