@@ -3,32 +3,30 @@ layout: default
 title: BLOODPUNK
 ---
 
+<!-- NAV -->
+<nav>
+  <div class="logo-box">Logo</div>
+  <ul class="nav-links">
+    <li><a href="index.html">메인</a></li>
+    <li><a href="개발노트.html" class="active">개발노트</a></li>
+    <li><a href="#">설정집</a></li>
+    <li><a href="갤러리.html">갤러리</a></li>
+    <li><a href="#">코멘트</a></li>
+  </ul>
+</nav>
 
-  <!-- NAV -->
-  <nav>
-    <div class="logo-box">Logo</div>
-    <ul class="nav-links">
-      <li><a href="index.html">메인</a></li>
-      <li><a href="개발노트.html" class="active">개발노트</a></li>
-      <li><a href="#">설정집</a></li>
-      <li><a href="갤러리.html">갤러리</a></li>
-      <li><a href="#">코멘트</a></li>
-    </ul>
-  </nav>
+<!-- 히어로 배너 -->
+<div class="hero-banner"></div>
 
-  <!-- 히어로 배너 -->
-  <div class="hero-banner"></div>
+<!-- 페이지 본문 -->
+<div class="page-body">
+  <div class="content-layout">
 
-  <!-- 페이지 본문 -->
-  <div class="page-body">
-
-    <div class="content-layout">
-
-    <!-- 사이드바 - 여기에 필터 추가 -->
+    <!-- 사이드바 -->
     <aside class="sidebar">
       <h3>Filter</h3>
       
-      <!-- 카테고리 필터 탭 -->
+      <!-- 카테고리 필터 -->
       <div class="filter-group">
         <div class="label-row" style="padding: 11px 14px; border-bottom: 1px solid #e8e8e8;">
           <span style="font-weight: 700;">분류</span>
@@ -51,109 +49,106 @@ title: BLOODPUNK
           <button id="apply-filter" class="btn-apply-filter">적용</button>
         </div>
       </div>
+    </aside>
 
-      <script>
-        const applyBtn = document.getElementById('apply-filter');
-        const searchInput = document.getElementById('search-input');
-        const categoryCheckboxes = document.querySelectorAll('.category-filter');
-        const postsContainer = document.getElementById('posts-container');
-        const postCards = postsContainer.querySelectorAll('.post-card');
-      
-        applyBtn.addEventListener('click', filterPosts);
-        searchInput.addEventListener('keyup', function(e) {
-          if (e.key === 'Enter') filterPosts();
-        });
-      
-        function filterPosts() {
-          const searchKeyword = searchInput.value.toLowerCase();
-          const selectedCategories = Array.from(categoryCheckboxes)
-            .filter(cb => cb.checked)
-            .map(cb => cb.value);
-      
-          postCards.forEach(card => {
-            const cardCategory = card.getAttribute('data-category');
-            const cardTitle = card.getAttribute('data-title');
-      
-            // 카테고리 필터링
-            const categoryMatch = selectedCategories.length === 0 || selectedCategories.includes(cardCategory);
-      
-            // 검색어 필터링
-            const searchMatch = searchKeyword === '' || cardTitle.includes(searchKeyword);
-      
-            // 둘 다 만족하면 표시
-            if (categoryMatch && searchMatch) {
-              card.style.display = 'block';
-            } else {
-              card.style.display = 'none';
-            }
-          });
-        }
-      </script>
-      
-      <!-- 포스트 목록 -->
-      <div class="posts-list">
-        {% for post in site.posts %}
-      
-          <div class="post-card">
-            <p class="post-title">{{ post.date | date: "%m월%d일: " }} {{ post.title }}</p>
-      
-            {% if post.thumb %}
-              <div class="post-body-media">
-                <div class="post-thumb">
-                  <img src="{{ post.thumb }}" alt="{{ post.title }}" style="width:100%; height:100%; object-fit:cover;" />
-                </div>
-                <div class="post-content-box">{{ post.excerpt | strip_html | truncate: 150}}</div>
-              </div>
-      
-            {% else %}
-              <div class="post-body-text">{{ post.excerpt | strip_html | truncate: 200}}</div>
-      
-            {% endif %}
-      
-            <a class="post-more" href="{{ post.url | relative_url }}">자세히</a>
-          </div>
-      
-        {% endfor %}
-</div>
-</div> <!-- content-layout -->
-</div> <!-- page-body -->
-  <!-- 푸터 -->
-  <footer>
-    <div class="footer-top">
-      <p class="footer-newsletter-text">Let's stay in touch! Sign up to our newsletter and get the best deals!</p>
-      <div class="footer-newsletter-form">
-        <input type="email" placeholder="Insert your email address here" />
-        <button class="btn-subscribe">Subscribe now</button>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="footer-logo-area">
-        <div class="footer-logo-box">Logo</div>
-        <div class="footer-socials">
-          <a href="#" title="Facebook">&#x1F426;</a>
-          <a href="#" title="Instagram">&#x1F4F7;</a>
-        </div>
-      </div>
-      <div class="footer-links">
-        <div class="footer-links-col">
-          <h4>Help</h4>
-          <ul>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Customer service</a></li>
-            <li><a href="#">How to guides</a></li>
-            <li><a href="#">Contact us</a></li>
-          </ul>
-        </div>
-        <div class="footer-links-col">
-          <h4>Other</h4>
-          <ul>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Sitemap</a></li>
-            <li><a href="#">Subscriptions</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <!-- 포스트 목록 (사이드바 밖에!) -->
+    <div class="posts-list" id="posts-container">
+      {% for post in site.posts %}
     
-  </footer>
+        <div class="post-card" data-category="{{ post.category }}" data-title="{{ post.title | downcase }}">
+          <p class="post-title">{{ post.date | date: "%m월%d일: " }} {{ post.title }}</p>
+    
+          {% if post.thumb %}
+            <div class="post-body-media">
+              <div class="post-thumb">
+                <img src="{{ post.thumb }}" alt="{{ post.title }}" style="width:100%; height:100%; object-fit:cover;" />
+              </div>
+              <div class="post-content-box">{{ post.excerpt | strip_html | truncate: 150}}</div>
+            </div>
+    
+          {% else %}
+            <div class="post-body-text">{{ post.excerpt | strip_html | truncate: 200}}</div>
+    
+          {% endif %}
+    
+          <a class="post-more" href="{{ post.url | relative_url }}">자세히</a>
+        </div>
+    
+      {% endfor %}
+    </div>
 
+  </div> <!-- content-layout -->
+</div> <!-- page-body -->
+
+<!-- 푸터 -->
+<footer>
+  <div class="footer-top">
+    <p class="footer-newsletter-text">Let's stay in touch! Sign up to our newsletter and get the best deals!</p>
+    <div class="footer-newsletter-form">
+      <input type="email" placeholder="Insert your email address here" />
+      <button class="btn-subscribe">Subscribe now</button>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-logo-area">
+      <div class="footer-logo-box">Logo</div>
+      <div class="footer-socials">
+        <a href="#" title="Facebook">&#x1F426;</a>
+        <a href="#" title="Instagram">&#x1F4F7;</a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Customer service</a></li>
+          <li><a href="#">How to guides</a></li>
+          <li><a href="#">Contact us</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h4>Other</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Sitemap</a></li>
+          <li><a href="#">Subscriptions</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const applyBtn = document.getElementById('apply-filter');
+  const searchInput = document.getElementById('search-input');
+  const categoryCheckboxes = document.querySelectorAll('.category-filter');
+  const postsContainer = document.getElementById('posts-container');
+  const postCards = postsContainer.querySelectorAll('.post-card');
+
+  applyBtn.addEventListener('click', filterPosts);
+  searchInput.addEventListener('keyup', function(e) {
+    if (e.key === 'Enter') filterPosts();
+  });
+
+  function filterPosts() {
+    const searchKeyword = searchInput.value.toLowerCase();
+    const selectedCategories = Array.from(categoryCheckboxes)
+      .filter(cb => cb.checked)
+      .map(cb => cb.value);
+
+    postCards.forEach(card => {
+      const cardCategory = card.getAttribute('data-category');
+      const cardTitle = card.getAttribute('data-title');
+
+      const categoryMatch = selectedCategories.length === 0 || selectedCategories.includes(cardCategory);
+      const searchMatch = searchKeyword === '' || cardTitle.includes(searchKeyword);
+
+      if (categoryMatch && searchMatch) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
