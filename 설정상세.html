@@ -1,0 +1,167 @@
+---
+layout: default
+title: 프로젝트: 미트 -플랜트
+---
+
+<!-- 공지 바 -->
+<div class="announcement-bar">
+  For free shipping on orders over $100 and more use code FREESHIPPINGYAY
+</div>
+
+<!-- 히어로 배너 -->
+<div class="hero-banner"></div>
+
+<!-- 페이지 본문 -->
+<div class="page-body">
+
+  <!-- 설정 상세 페이지 -->
+  <div class="setting-detail">
+
+    <!-- 상단 링크 -->
+    <a href="/bloodpunk_project/설정집.html" class="back-link">-이전 내용으로 돌아가기-</a>
+    
+    <!-- 제목 -->
+    <h1 class="detail-title">프로젝트: 미트 -플랜트</h1>
+
+    <!-- 섹션 1: 이미지 + 텍스트 -->
+    <div class="detail-section-1">
+      <div class="detail-image-left"></div>
+      <div class="detail-text-right">
+        <p>당신은 어느 생명공학 연구소의 연구원입니다. 당신은 인사 후로 부터 같은 프로젝트를 진행하고 있습니다. 고기 못이 나는 열매가 나오는 나무를 만드는 거죠 당신은 이 일에 몰랑 느껴어, 새상에 키다란 파장을 불러일으킬 것이라 확신하고 있습니다!</p>
+      </div>
+    </div>
+
+    <!-- 분할선 -->
+    <hr class="divider">
+
+    <!-- 섹션 2: 질문 + 이미지 + 텍스트 -->
+    <div class="detail-section-2">
+      <p class="detail-question">자! 오늘이 당신의 프로젝트의 발표입니다! 연구 결과를 확인 해 봤기요?</p>
+      
+      <div class="detail-image-center"></div>
+      
+      <p class="detail-conclusion">... 충합니다. 우리가 만든제 '조그란한' 문제를 안음고 있군요.</p>
+    </div>
+
+  </div>
+
+</div>
+
+<style>
+  .announcement-bar {
+    background: var(--dark);
+    color: var(--white);
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 20px;
+    letter-spacing: 0.2px;
+  }
+
+  .hero-banner {
+    width: 100%;
+    height: 220px;
+    background: var(--gray-bg);
+  }
+
+  .page-body {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 40px 80px;
+  }
+
+  .setting-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .back-link {
+    font-size: 13px;
+    color: #999;
+    text-decoration: none;
+    transition: color 0.2s;
+    align-self: flex-start;
+  }
+
+  .back-link:hover {
+    color: var(--red);
+  }
+
+  .detail-title {
+    font-size: 48px;
+    font-weight: 800;
+    text-align: center;
+    color: var(--dark);
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+  }
+
+  /* 섹션 1: 이미지 좌측, 텍스트 우측 */
+  .detail-section-1 {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+  }
+
+  .detail-image-left {
+    width: 340px;
+    height: 240px;
+    background: var(--card-bg);
+    border: 1.5px solid #999;
+    flex-shrink: 0;
+    border-radius: 2px;
+  }
+
+  .detail-text-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding-right: 20px;
+  }
+
+  .detail-text-right p {
+    font-size: 14px;
+    line-height: 1.85;
+    color: #555;
+  }
+
+  /* 분할선 */
+  .divider {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+  }
+
+  /* 섹션 2: 중앙 정렬 */
+  .detail-section-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .detail-question {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark);
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  .detail-image-center {
+    width: 100%;
+    max-width: 340px;
+    height: 240px;
+    background: var(--card-bg);
+    border: 1.5px solid #999;
+    border-radius: 2px;
+  }
+
+  .detail-conclusion {
+    font-size: 13px;
+    color: #888;
+    max-width: 500px;
+  }
+</style>
