@@ -30,54 +30,65 @@ title: BLOODPUNK
       
       <!-- 카테고리 필터 탭 -->
       <div class="filter-group">
-        <div class="filter-item">
-          <a href="?category=전체" class="category-link">전체</a>
+        <div class="label-row" style="padding: 11px 14px; border-bottom: 1px solid #e8e8e8;">
+          <span style="font-weight: 700;">분류</span>
         </div>
-        <div class="filter-item">
-          <a href="?category=주요업데이트" class="category-link">주요 업데이트</a>
-        </div>
-        <div class="filter-item">
-          <a href="?category=버그수정" class="category-link">버그 수정</a>
-        </div>
-        <div class="filter-item">
-          <a href="?category=개발목표" class="category-link">개발 목표</a>
-        </div>
-      </div>
-
-      <!-- 검색창 -->
-      <div style="margin-top: 20px;">
-        <div class="search-box" style="width: 100%;">
-          <span class="search-icon">🔍</span>
-          <input type="text" id="search-input" placeholder="검색" style="width: 100%;" />
-        </div>
-      </div>
-
-      <!-- 기존 필터들 -->
-      <div class="filter-group" style="margin-top: 20px;">
-        <div class="filter-item">
-          <span>Tea type</span>
-          <span class="arrow">▾</span>
-        </div>
-        <div class="filter-item">
-          <span>Size</span>
-          <span class="arrow">▾</span>
-        </div>
-        <div class="filter-item">
-          <span>Strength</span>
-        </div>
+        
         <div class="filter-item has-checks">
-          <div class="label-row"><span>Caffeine</span></div>
           <div class="checkboxes">
-            <label><input type="checkbox" /> Caffeinated</label>
-            <label><input type="checkbox" /> Decaffeinated</label>
+            <label><input type="checkbox" class="category-filter" value="주요업데이트" /> 중요 업데이트</label>
+            <label><input type="checkbox" class="category-filter" value="버그수정" /> 버그 수정</label>
+            <label><input type="checkbox" class="category-filter" value="개발목표" /> 개발 예정</label>
           </div>
         </div>
-        <div class="filter-item">
-          <span>Source</span>
+      
+        <!-- 검색창 -->
+        <div style="padding: 14px; border-bottom: 1px solid #e8e8e8;">
+          <div class="search-box" style="width: 100%; margin-bottom: 10px;">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="search-input" placeholder="검색" style="width: 100%;" />
+          </div>
+          <button id="apply-filter" class="btn-apply-filter">적용</button>
         </div>
       </div>
-    </aside>
 
+      <script>
+        const applyBtn = document.getElementById('apply-filter');
+        const searchInput = document.getElementById('search-input');
+        const categoryCheckboxes = document.querySelectorAll('.category-filter');
+        const postsContainer = document.getElementById('posts-container');
+        const postCards = postsContainer.querySelectorAll('.post-card');
+      
+        applyBtn.addEventListener('click', filterPosts);
+        searchInput.addEventListener('keyup', function(e) {
+          if (e.key === 'Enter') filterPosts();
+        });
+      
+        function filterPosts() {
+          const searchKeyword = searchInput.value.toLowerCase();
+          const selectedCategories = Array.from(categoryCheckboxes)
+            .filter(cb => cb.checked)
+            .map(cb => cb.value);
+      
+          postCards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            const cardTitle = card.getAttribute('data-title');
+      
+            // 카테고리 필터링
+            const categoryMatch = selectedCategories.length === 0 || selectedCategories.includes(cardCategory);
+      
+            // 검색어 필터링
+            const searchMatch = searchKeyword === '' || cardTitle.includes(searchKeyword);
+      
+            // 둘 다 만족하면 표시
+            if (categoryMatch && searchMatch) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        }
+      </script>
       
       <!-- 포스트 목록 -->
       <div class="posts-list">
