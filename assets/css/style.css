@@ -854,3 +854,26 @@
       .category-link:hover {
         color: var(--red);
       }
+
+      .btn-apply-filter {
+        width: 100%;
+        padding: 10px 14px;
+        background: var(--dark);
+        color: var(--white);
+        border: none;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      
+      .btn-apply-filter:hover {
+        background: #000;
+      }
+      
+      .label-row {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        font-weight: 700;
+      }
