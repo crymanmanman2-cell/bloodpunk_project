@@ -840,3 +840,17 @@
           height: 100%;
           object-fit: cover;
       }
+
+      .category-link {
+        display: block;
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 600;
+        padding: 8px 0;
+        cursor: pointer;
+        transition: color 0.2s;
+      }
+      
+      .category-link:hover {
+        color: var(--red);
+      }
