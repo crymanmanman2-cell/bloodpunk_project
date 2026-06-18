@@ -10,16 +10,15 @@
 
   <!-- NAV (모든 페이지에서 동일) -->
   <nav>
-    <div class="logo-box">Logo</div>
-    <ul class="nav-links">
-      <li><a href="/bloodpunk_project/index.html">메인</a></li>
-      <li><a href="/bloodpunk_project/개발노트.html">개발노트</a></li>
-      <li><a href="/bloodpunk_project/설정집.html">설정집</a></li>
-      <li><a href="/bloodpunk_project/갤러리.html">갤러리</a></li>
-      <li><a href="/bloodpunk_project/코멘트.html">코멘트</a></li>
-    </ul>
-  </nav>
-
+  <div class="logo-box">Logo</div>
+  <ul class="nav-links">
+    <li><a href="/bloodpunk_project/" class="{% if page.url == '/bloodpunk_project/' %}active{% endif %}">메인</a></li>
+    <li><a href="/bloodpunk_project/개발노트.html" class="{% if '개발노트' == page.url | split: '/' | last | split: '.' | first %}active{% endif %}">개발노트</a></li>
+    <li><a href="/bloodpunk_project/설정집.html" class="{% if '설정집' == page.url | split: '/' | last | split: '.' | first %}active{% endif %}">설정집</a></li>
+    <li><a href="/bloodpunk_project/갤러리.html" class="{% if '갤러리' == page.url | split: '/' | last | split: '.' | first %}active{% endif %}">갤러리</a></li>
+    <li><a href="/bloodpunk_project/코멘트.html" class="{% if '코멘트' == page.url | split: '/' | last | split: '.' | first %}active{% endif %}">코멘트</a></li>
+  </ul>
+</nav>
   <div class="announcement-bar">
     개발중인 페이지 입니다! 사이트가 불안정 할 수 있습니다!
   </div>
